@@ -10,16 +10,18 @@ func NewSet[KEY comparable](keys ...KEY) Set[KEY] {
 	return set
 }
 
-func (s Set[KEY]) Add(keys ...KEY) {
+func (s Set[KEY]) Add(keys ...KEY) Set[KEY] {
 	for _, key := range keys {
 		s[key] = struct{}{}
 	}
+	return s
 }
 
-func (s Set[KEY]) Del(keys ...KEY) {
+func (s Set[KEY]) Del(keys ...KEY) Set[KEY] {
 	for _, key := range keys {
 		delete(s, key)
 	}
+	return s
 }
 
 func (s Set[KEY]) Has(key KEY) bool {
