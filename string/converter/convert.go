@@ -1,6 +1,10 @@
 package converter
 
-import "unicode"
+import (
+	"fmt"
+	"strconv"
+	"unicode"
+)
 
 func CamelCaseToUnderscore(s string) string {
 	var output []rune
@@ -16,4 +20,15 @@ func CamelCaseToUnderscore(s string) string {
 		output = append(output, unicode.ToLower(r))
 	}
 	return string(output)
+}
+
+func MustAtoi(s string) int {
+	if len(s) == 0 {
+		return 0
+	}
+	result, err := strconv.Atoi(s)
+	if err != nil {
+		panic(fmt.Sprintf("err:%v, value:%s", err, s))
+	}
+	return result
 }
